@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+//TODO:
+// ASTRIIIIIIIDDDDD>>>>> add service/module/controller for user, tag, prize
+
+model ToDoItem {
+  id          String   @id @default(uuid())
+  task        String
+  completed   Boolean
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  prize       Prize?
+  user        User     @relation(fields: [ToDoItemId], references: [id])
+  ToDoItemId  String
+  tags        Tag[]
+}
+
+model Prize {
+  id               String   @id @default(uuid())
+  prizeName        String
+  prizeDescription String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  TodoItem         ToDoItem @relation(fields: [TodoItemId], references: [id])
+  TodoItemId       String   @unique
+}
+
+model User {
+  id         String     @id @default(uuid())
+  email      String     @unique
+  password   String
+  name       String
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  ToDoItemId String?
+  ToDoItem   ToDoItem[]
+}
+
+model Tag {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  ToDoItem    ToDoItem[] 
+}

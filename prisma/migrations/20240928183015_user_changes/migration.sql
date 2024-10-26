@@ -1,0 +1,8 @@
+-- CreateTable
+CREATE TABLE "ToDoItem" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "task" TEXT NOT NULL,
+    "completed" BOOLEAN NOT NULL,
+    "userId" INTEGER NOT NULL,
+    CONSTRAINT "ToDoItem_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
