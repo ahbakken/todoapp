@@ -1,11 +1,13 @@
 Another TODO app
 
-install: yarn
+Backend:
+Install and run
+yarn -> yarn run
 
-run: yarn run
+Prisma, NestJS, SQLite
 
-Prisma
-User
-todo
-tag
-prize
+Frontend:
+Install and run
+yarn -> yarn dev
+
+React, Vite, Typescript
