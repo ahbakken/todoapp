@@ -1,6 +1,7 @@
 Another TODO app
 
 install: yarn
+
 run: yarn run
 
 Prisma
